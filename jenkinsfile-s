@@ -5,7 +5,7 @@ node('workstation'){
     //PARAMETERS:
     properties([
         parameters([
-            string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should i say hello to?')
+            string(name: 'PERSON', defaultValue: 'Mr Parameters', description: 'Who should i say hello to?')
         ])
     ])
 
@@ -14,7 +14,7 @@ node('workstation'){
         message "Should we continue?"
         ok "Yes, we should."
         parameters {
-        string(name: 'INPUTPERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+            string(name: 'INPUTPERSON', defaultValue: 'Mr Inputs', description: 'Who should I say hello to?')
         }
     }
     
@@ -34,7 +34,11 @@ node('workstation'){
                 echo "Properties of parameters are ${params.PERSON}"
             }
             stage("inputs"){
-                echo "Hello, ${INPUTPERSON}"
+                input(id: 'deploy_approval', message: 'Approve deployment?', ok: 'Deploy', reject: 'Cancel')
+                echo "inputs"
+            }
+            stage("Deployment"){
+                echo "Hello input values of ${INPUTPERSON}"
             }
         } catch (e){
             stage("Post Actions"){
