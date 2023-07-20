@@ -38,8 +38,6 @@ pipeline{
         stage("two"){
             steps{
                 echo "two"
-            }
-            steps{
                 echo "HELLO ${params.PERSON}"
             }
         }
