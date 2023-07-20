@@ -1,6 +1,7 @@
 node('workstation'){
     //env is default global variable, stored values
     env.SAMPLE_URL = "google.com"
+    env.TERM = "xterm"
 
     ansiColor('xterm'){
         echo "TERM=${env.TERM}"
