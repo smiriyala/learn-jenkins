@@ -23,6 +23,11 @@ pipeline{
         SSH = credentials("SSH")
     }
 
+    //PARAMETERS:
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should i say hello to?')
+    }
+
     stages{
         stage("one"){
             steps{
@@ -33,6 +38,9 @@ pipeline{
         stage("two"){
             steps{
                 echo "two"
+            }
+            steps{
+                echo "HELLO ${params.PERSON}"
             }
         }
     }

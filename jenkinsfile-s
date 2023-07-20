@@ -2,6 +2,13 @@ node('workstation'){
     //env is default global variable, stored values
     env.SAMPLE_URL = "google.com"
 
+    //PARAMETERS:
+    properties([
+        parameters([
+            string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should i say hello to?')
+        ])
+    ])
+
     ansiColor('xterm'){
    
         try{
@@ -16,6 +23,7 @@ node('workstation'){
         
             stage("two"){
                 echo "two"
+                echo "Properties of parameters are ${params.PERSON}"
             }
         } catch (e){
             stage("Post Actions"){
