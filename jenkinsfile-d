@@ -13,10 +13,11 @@ pipeline{
 
     //OPTIONS:
     options{
+        timestamps()
         ansiColor('xterm')
     }
 
-    
+
     //ENVIRONMENT: 
     environment {
         SAMPLE_URL = "google.com"
