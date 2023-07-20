@@ -17,7 +17,6 @@ pipeline{
         ansiColor('xterm')
     }
 
-
     //ENVIRONMENT: 
     environment {
         SAMPLE_URL = "google.com"
