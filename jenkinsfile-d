@@ -1,10 +1,10 @@
 pipeline{
-    // agent any
+    agent any
 
     //Note:  Node name Agenet
-    agent{
-        node{lable 'workstation'}
-    }
+    // agent{
+    //     node{lebel 'workstation'}
+    // }
 
     //Note: based on lable, Labels can be given to the nodes in Jenkins and used here.
     // agent{
