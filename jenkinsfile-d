@@ -41,6 +41,9 @@ pipeline{
             }
         }
         stage("two"){
+            when{
+                environment name: 'PERSON', value: 'SUBBU'
+            }
             steps{
                 echo "two"
                 echo "HELLO ${params.BUILD_ENV}"
