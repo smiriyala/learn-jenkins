@@ -1,8 +1,16 @@
-node{
-    stage("one"){
-        echo "one"
+node('workstation'){
+    try{
+        stage("one"){
+            echo "one"
+        }
+
+        stage("two"){
+            echo "two"
+        }
+    } catch (e){
+        stage("Post Actions"){
+            echo 'This will run upon failure'
+        }
     }
-    stage("two"){
-        echo "two"
-    }
+    
 }
