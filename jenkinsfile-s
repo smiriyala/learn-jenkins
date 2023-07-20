@@ -37,9 +37,12 @@ node('workstation'){
                 input(id: 'deploy_approval', message: 'Approve deployment?', ok: 'Deploy', reject: 'Cancel')
                 echo "inputs"
             }
-            stage("Deployment"){
-                echo "Hello input values of ${INPUTPERSON}"
+            if ( PERSON == "SUBBU"){
+                stage("Deployment"){
+                    echo "Hello input values of ${INPUTPERSON}"
+                }
             }
+            
         } catch (e){
             stage("Post Actions"){
                 echo 'This will run upon failure'
