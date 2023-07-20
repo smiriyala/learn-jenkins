@@ -9,8 +9,16 @@ node('workstation'){
         ])
     ])
 
+    //INPUTS:
+    input {
+        message "Should we continue?"
+        ok "Yes, we should."
+        parameters {
+        string(name: 'INPUTPERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        }
+    }
+    
     ansiColor('xterm'){
-   
         try{
             withCredentials([usernameColonPassword(credentialsId: "SSH", variable: "USERPASS")]){
                 stage("one"){
@@ -24,6 +32,9 @@ node('workstation'){
             stage("two"){
                 echo "two"
                 echo "Properties of parameters are ${params.PERSON}"
+            }
+            stage("inputs"){
+                echo "Hello, ${INPUTPERSON}"
             }
         } catch (e){
             stage("Post Actions"){

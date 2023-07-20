@@ -28,6 +28,11 @@ pipeline{
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should i say hello to?')
     }
 
+    //TOOLS:
+    // tools {
+    //     maven 'apache-maven-3.0.1'
+    // }
+
     stages{
         stage("one"){
             steps{
@@ -38,7 +43,24 @@ pipeline{
         stage("two"){
             steps{
                 echo "two"
-                echo "HELLO ${params.PERSON}"
+                echo "HELLO ${params.BUILD_ENV}"
+            }
+        }
+        //INPUTS:
+        stage("three"){
+            steps {
+                script {
+                    env.USERNAME = input message: 'Please enter the username',
+                                        parameters: [string(defaultValue: '',
+                                                    description: '',
+                                                    name: 'Username')]
+                    env.PASSWORD = input message: 'Please enter the password',
+                                        parameters: [password(defaultValue: '',
+                                                    description: '',
+                                                    name: 'Password')]
+                }
+                echo "Username: ${env.USERNAME}"
+                echo "Password: ${env.PASSWORD}"
             }
         }
     }
