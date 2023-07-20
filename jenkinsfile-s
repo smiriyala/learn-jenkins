@@ -33,10 +33,10 @@ node('workstation'){
                 echo "two"
                 echo "Properties of parameters are ${params.PERSON}"
             }
-            stage("inputs"){
-                input(id: 'deploy_approval', message: 'Approve deployment?', ok: 'Deploy', reject: 'Cancel')
-                echo "inputs"
-            }
+            // stage("inputs"){
+            //     input(id: 'deploy_approval', message: 'Approve deployment?', ok: 'Deploy', reject: 'Cancel')
+            //     echo "inputs"
+            // }
             stage("Deployment"){
                 echo "Hello input values of ${INPUTPERSON}"
             }
