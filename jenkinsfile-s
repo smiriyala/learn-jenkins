@@ -1,6 +1,10 @@
 node('workstation'){
     //env is default global variable, stored values
     env.SAMPLE_URL = "google.com"
+
+    ansiColor('xterm'){
+        echo "TERM=${env.TERM}"
+    }
     try{
         withCredentials([usernameColonPassword(credentialsId: "SSH", variable: "USERPASS")]){
             stage("one"){
@@ -10,8 +14,7 @@ node('workstation'){
                 echo "sameple URL is ${SAMPLE_URL}"
             }
         }
-        
-
+    
         stage("two"){
             echo "two"
         }
