@@ -1,8 +1,16 @@
 node('workstation'){
+    //env is default global variable, stored values
+    env.SAMPLE_URL = "google.com"
     try{
-        stage("one"){
-            echo "one"
+        withCredentials([usernameColonPassword(credentialsId: "SSH", variable: "USERPASS")]){
+            stage("one"){
+                echo "one"
+                sh 'env'
+                sh 'env >/tmp/env'
+                echo "sameple URL is ${SAMPLE_URL}"
+            }
         }
+        
 
         stage("two"){
             echo "two"
