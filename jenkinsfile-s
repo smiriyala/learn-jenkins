@@ -2,23 +2,25 @@ node('workstation'){
     //env is default global variable, stored values
     env.SAMPLE_URL = "google.com"
 
-    ansiColor('xterm')
-    try{
-        withCredentials([usernameColonPassword(credentialsId: "SSH", variable: "USERPASS")]){
-            stage("one"){
-                echo "one"
-                sh 'env'
-                sh 'env >/tmp/env'
-                echo "sameple URL is ${SAMPLE_URL}"
+    ansiColor('xterm'){
+   
+        try{
+            withCredentials([usernameColonPassword(credentialsId: "SSH", variable: "USERPASS")]){
+                stage("one"){
+                    echo "one"
+                    sh 'env'
+                    sh 'env >/tmp/env'
+                    echo "sameple URL is ${SAMPLE_URL}"
+                }
             }
-        }
-    
-        stage("two"){
-            echo "two"
-        }
-    } catch (e){
-        stage("Post Actions"){
-            echo 'This will run upon failure'
+        
+            stage("two"){
+                echo "two"
+            }
+        } catch (e){
+            stage("Post Actions"){
+                echo 'This will run upon failure'
+            }
         }
     }
     
