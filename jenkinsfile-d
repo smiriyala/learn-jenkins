@@ -48,6 +48,18 @@ pipeline{
                 echo "two"
                 echo "HELLO ${params.BUILD_ENV}"
             }
+            parallel{
+                stage('Parallel-A'){
+                    steps{
+                        echo "parallel-A"
+                    }
+                }
+                stage('Parallel-B'){
+                    steps{
+                        echo "parallel-B"
+                    }
+                }
+            }
         }
         //INPUTS:
         stage("three"){
